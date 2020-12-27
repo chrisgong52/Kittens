@@ -40,7 +40,8 @@ class CardDisplay:
                "highlight rainbow-ralphing cat": "/Users/Maria/Desktop/Exploding Kittens/Card Images/HighlightedRainbowCat.png",
                "highlight tacocat": "/Users/Maria/Desktop/Exploding Kittens/Card Images/HighlightedTacocat.png",
                "highlight exploding kitten": "/Users/Maria/Desktop/Exploding Kittens/Card Images/HighlightedExplodingKitten.png",
-               "highlight hairy potato cat": "/Users/Maria/Desktop/Exploding Kittens/Card Images/HighlightedHairyPotatoCat.png"}
+               "highlight hairy potato cat": "/Users/Maria/Desktop/Exploding Kittens/Card Images/HighlightedHairyPotatoCat.png",
+               "card_back": "/Users/Maria/Desktop/Exploding Kittens/Card Images/CardBack.png"}
         self.default_width = 80
         image = self.card_images[name]
         open_image = Image.open(image).resize((self.default_width, height), Image.ANTIALIAS)

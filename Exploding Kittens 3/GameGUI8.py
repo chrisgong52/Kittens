@@ -94,10 +94,6 @@ DECK = Deck(cards_in_deck)
 DISCARD = Deck(discard)
 
 
-        
-# Dectect which card was selected
-def check_card_clicked():
-    pass
 
 def get_player_bounds(player: Player):
     global CARD_WIDTH
@@ -116,6 +112,7 @@ def callback(event):
     #print(bounds)
     click_x = event.x
     click_y = event.y
+    print(click_x)
     if click_y >= HORIZ_LINE and click_x >= bounds[0] and click_x <= bounds[1]:
         dist = click_x - bounds[0]
         count = bounds[0]
@@ -239,6 +236,15 @@ def init_cards(left, right, top, num_cards):
     #CARDS = indices
 
 
+# display other players' hands via card back
+def init_other_players(host_player: int):
+    global PLAYERS
+    ### testing one player
+    for item in range(len(PLAYERS)):
+        if item != host_player:
+            pass
+
+
 milliseconds_start = int(round(time.time() * 1000))
 milliseconds = int(round(time.time() * 1000))
 
@@ -282,6 +288,7 @@ p2 = Player()
 PLAYERS.append(p1)
 PLAYERS.append(p2)
 p1.draw(DECK)
+print(canvas.winfo_reqwidth())
 for player in PLAYERS:
     ACTION_LIST.append([])
 p2_hand_size = 3

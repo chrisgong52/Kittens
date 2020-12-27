@@ -9,12 +9,13 @@ import datetime
 import time
 import NewCardGenerator
 from PIL import ImageTk, Image
+import PIL
 from Player import Player
 import cv2
 
 class CardDisplay:
     
-    def __init__(self, name, root, canvas, left_bound, top_bound, height):
+    def __init__(self, name, root, canvas, left_bound, top_bound, angle_rotate):
         self.card_images = {"diffuse": "/Users/Maria/Desktop/Exploding Kittens/Card Images/Diffuse.png",
                "nope": "/Users/Maria/Desktop/Exploding Kittens/Card Images/Nope.png",
                "attack": "/Users/Maria/Desktop/Exploding Kittens/Card Images/Attack.png",
@@ -43,11 +44,15 @@ class CardDisplay:
                "highlight hairy potato cat": "/Users/Maria/Desktop/Exploding Kittens/Card Images/HighlightedHairyPotatoCat.png",
                "card_back": "/Users/Maria/Desktop/Exploding Kittens/Card Images/CardBack.png"}
         self.default_width = 80
+        self.height = 120
         image = self.card_images[name]
-        open_image = Image.open(image).resize((self.default_width, height), Image.ANTIALIAS)
-        self.photo = ImageTk.PhotoImage(open_image)
+        open_image = Image.open(image).resize((self.default_width, self.height), Image.ANTIALIAS)
+        self.photo = open_image.rotate(angle_rotate, PIL.Image.NEAREST, expand = 1)
+        self.photo = ImageTk.PhotoImage(self.photo)
+        
+        ### try to change to dynamically update
         temp = canvas.create_image(left_bound, top_bound, anchor = NW, image = self.photo)
-        self.height = height
+        
         self.left_bound = left_bound
         self.top_bound = top_bound
         self.canvas = canvas

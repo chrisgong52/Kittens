@@ -154,20 +154,30 @@ def init_items_output(commands: list):
     return out
 
 
-def check_single(played_cards: list, action_cards: set):
+def check_single(played_cards: list, action_cards: set, players: list, current_player: list):
     if played_cards[0] in action_cards:
-        return played_cards[0]
+        if played_cards[0] == "favor":
+            for item in range(len(players)):
+                if item != current_player[0]:
+                    if len(players[item].hand) > 0:
+                        return played_cards[0]
+            return "invalid"
     return "invalid"
 
-def check_match(played_cards: list, action_cards: set):
+def check_match(played_cards: list, action_cards: set, players: list, current_player: list):
     temp = played_cards[0]
     print(temp)
     for card in played_cards:
         if card != temp:
             return "invalid"
+    for item in range(len(players)):
+        if item != current_player[0]:
+            if len(players[item].hand) > 0:
+                return "match " + str(len(played_cards))
+            return "invalid"
     return "match " + str(len(played_cards))
 
-def check_diff(played_cards: list, action_cards: set):
+def check_diff(played_cards: list, action_cards: set, players: list, current_player: list):
     temp = []
     for card in played_cards:
         if card in temp:
@@ -175,9 +185,9 @@ def check_diff(played_cards: list, action_cards: set):
         temp.append(card)
     return "different"
     
-def check_valid(played_cards: list, action_cards: set):
+def check_valid(played_cards: list, action_cards: set, players: list, current_player: list):
     length_lookup = {1: check_single, 2: check_match, 3: check_match, 5: check_diff}
-    return length_lookup[len(played_cards)](played_cards, action_cards)
+    return length_lookup[len(played_cards)](played_cards, action_cards, players, current_player)
         
 def attack_continue():
     global attack
@@ -202,7 +212,7 @@ def get_played(players: list, current_player: list, action_list: list):
         for i in action_list[current_player[0]][0]:
             played.append(players[current_player[0]].hand[i])
             inds.append(i)
-    played_action = check_valid(played, action_cards)
+    played_action = check_valid(played, action_cards, players, current_player)
     
     return [inds, played, played_action]
 

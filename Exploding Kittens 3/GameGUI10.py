@@ -23,8 +23,6 @@ from PIL.ImageChops import screen
 from NewCardGenerator import current_player
 
 
-'''root = tk.Tk()
-canvas = tk.Canvas(root, width=400, height=400)'''
 root = Tk()
 root.state('zoomed')
 global CANVAS_WIDTH
@@ -55,8 +53,6 @@ ACTION_LIST = []
 CARD_WIDTH = 80
 global ACTION_CARDS
 ACTION_CARDS = {"draw", "attack", "skip", "favor", "see the future", "shuffle"}
-#global CARD_HEIGHT
-#CARD_HEIGHT = 120
 
 
 
@@ -76,13 +72,11 @@ CARD_IMAGES = {"diffuse": "/Users/Maria/Desktop/Exploding Kittens/Card Images/Di
 
 
 deck_img = "/Users/Maria/Desktop/Exploding Kittens/Card Images/Deck.png"
-#open_deck = Image.open(deck_img).resize((60, 100), Image.ANTIALIAS)
 open_deck = Image.open(deck_img).resize((80, 120), Image.ANTIALIAS)
 
 deck_photo = ImageTk.PhotoImage(open_deck)
 
 discard_img = "/Users/Maria/Desktop/Exploding Kittens/Card Images/DiscardPile.png"
-#open_deck = Image.open(deck_img).resize((60, 100), Image.ANTIALIAS)
 open_discard = Image.open(discard_img).resize((80, 120), Image.ANTIALIAS)
 
 discard_photo = ImageTk.PhotoImage(open_discard)
@@ -111,13 +105,11 @@ def callback(event):
     global CARD_WIDTH
     #print("clicked at", event.x, event.y)
     bounds = get_player_bounds(PLAYERS[CURRENT_PLAYER[0]])
-    #print(bounds)
     click_x = event.x
     click_y = event.y
     print(click_x)
     if click_y >= HORIZ_LINE and click_x >= bounds[0] and click_x <= bounds[1]:
         dist = click_x - bounds[0]
-        count = bounds[0]
         ind = int(dist//40+1)
         if ind > len(PLAYERS[CURRENT_PLAYER[0]].hand):
             ind = ind - 1
@@ -132,8 +124,6 @@ def callback(event):
         else:
             PLAYERS[CURRENT_PLAYER[0]].change_state(ind)
             PLAYERS[CURRENT_PLAYER[0]].deselect_played(ind)
-        #print(ind)
-        #print("legal")
         print("hand: ", end = "")
         print(PLAYERS[CURRENT_PLAYER[0]].hand)
         print("played: ", end = "")
@@ -152,7 +142,9 @@ def on_click(action: string, name: string):
     global PLAYERS
     global DISCARD
     global ACTION_LIST
-    #print("Button Clicked " + str(CARD_COUNT+1))
+    global ACTION_CARDS
+    global DECK
+    global CURRENT_PLAYER
     for item in range(len(PLAYERS)):
             print("Player " + str(item+1) + " hand: ", end = "")
             PLAYERS[item].print()
@@ -167,9 +159,8 @@ def on_click(action: string, name: string):
         CHANGE THIS FOR FORMATTING FOR THE CARDS TO CORRECT DISCARD FORMAT LIKE IN TEST
         '''
         
-        global ACTION_CARDS
-        global DECK
-        if len(name) != 0 and StateTests.check_valid(name, ACTION_CARDS) != "invalid":
+        
+        if len(name) != 0 and StateTests.check_valid(name, ACTION_CARDS, PLAYERS, CURRENT_PLAYER) != "invalid":
             action_list = []
             for item in range(len(PLAYERS[CURRENT_PLAYER[0]].hand)):
                 if PLAYERS[CURRENT_PLAYER[0]].is_selected(item):
@@ -179,7 +170,7 @@ def on_click(action: string, name: string):
             inds = []
             
 
-            if len(name) != 0 and StateTests.check_valid(name, ACTION_CARDS) != "invalid":
+            if len(name) != 0 and StateTests.check_valid(name, ACTION_CARDS, PLAYERS, CURRENT_PLAYER) != "invalid":
                 if len(name) == 2 or (len(name) == 1 and name[0] == "favor"):
                     inds.append(input("input player to take card from: "))
                     inds.append(input("input index of card to take: "))
@@ -202,13 +193,11 @@ def on_click(action: string, name: string):
             print("CARD PLAYED")
             PLAYERS[CURRENT_PLAYER[0]].print()
             print()
-            print()
-            print()
         else:
             PLAYERS[CURRENT_PLAYER[0]].deselect_all()
         
         
-    if action == "remove":# and CARD_COUNT > 1:
+    if action == "remove":
         CARD_COUNT = CARD_COUNT - 1
         
         ### make selectable
@@ -217,25 +206,16 @@ def on_click(action: string, name: string):
         global EXIT
         EXIT = True
     global CARDS
-    #print(len(CARDS))
     init_cards(CARDS[0], CARDS[len(CARDS)-1], HORIZ_LINE, CARD_COUNT)
     
 # Make it so that front card is fully seen
 def init_cards(left, right, top, num_cards):
-    #canvas.delete("all")
-    #global CARDS 
-    #print(len(CARDS))
     if num_cards == 0:
         return
-    #canvas.create_line(left, top, right, top)
     card_size = int((right-left)/num_cards)
     indices = []
     for item in range(left, right+1, card_size):
         indices.append(item)
-        #if item != left:
-        #    canvas.create_line(item-card_size, top, item, top)
-        #canvas.create_line(item, HORIZ_LINE, item, BOTTOM_BOUND)
-    #CARDS = indices
 
 
 # display other players' hands via card back

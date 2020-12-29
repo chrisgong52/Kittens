@@ -21,6 +21,7 @@ from importlib.resources import path
 from CardDisplay2 import CardDisplay
 from PIL.ImageChops import screen
 from NewCardGenerator import current_player
+#import webbrowser
 
 
 root = Tk()

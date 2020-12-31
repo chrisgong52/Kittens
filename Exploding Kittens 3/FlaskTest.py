@@ -31,6 +31,9 @@ p2.hand.append("rainbow-ralphing cat")
 p2.hand.append("beard cat")
 
 players = [p1, p2]
+hand_sizes = []
+for item in players:
+    hand_sizes.append(len(item.hand))
 images = {"diffuse": "static/Diffuse.png",
           "nope": "static/Nope.png",
           "attack": "static/Attack.png",
@@ -73,7 +76,7 @@ def about_page():
 
 @app.route("/list")
 def list_display():
-    return render_template('list_display.html', player = p1, images = images, len = len(p1.hand))
+    return render_template('list_display.html', players = players, images = images, lens = hand_sizes)
 
 if __name__ == "__main__":
     app.run(debug = True)

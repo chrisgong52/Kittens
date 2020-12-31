@@ -3,16 +3,16 @@
 <head>
 	<style>
 		body{
-			--card_size: 7%;
+			--card_size: 8%;
 		}
 		
 		.grid-container {
 			display: grid;
-			grid-template-columns: repeat({{len}}, var(--card_size));
+			grid-template-columns: repeat({{lens[0]}}, var(--card_size));
 			min-width: 100%;
 			position: absolute;
 			bottom: 0;
-			margin-left: calc(50% - {{len}} * var(--card_size) / 2);
+			margin-left: calc(50% - {{lens[0]}} * var(--card_size) / 2);
 		}
 		
 		.grid-item>img{
@@ -28,16 +28,17 @@
 		
 		.other-player {
 			display: grid;
-			grid-template-columns: repeat({{len}}, var(--card_size));
+			grid-template-columns: repeat({{lens[1]}}, var(--card_size));
 			min-width: 100%;
 			position: fixed;
 			top: 0;
-			margin-left: calc(50% - {{len}} * var(--card_size) / 2);
+			margin-left: calc(50% - {{lens[1]}} * var(--card_size) / 2);
 		}
 		
 		.opponent-item>img{
 			width: 100%;
 			height: 100%;
+			transform: rotate(180deg);
 		}
 		
 		.opponent-item {
@@ -56,13 +57,13 @@
 <body>
 
 <div class="other-player">
-	{% for item in player.hand %}
+	{% for item in players[1].hand %}
 	<div class="opponent-item"><img src={{ images["card_back"] }} alt"test"></div>
 	{% endfor %}
 </div>
 
 <div class="grid-container">
-	{% for item in player.hand %}
+	{% for item in players[0].hand %}
 	<div class="grid-item"><img  src={{ images[item] }} alt="test"></div>
 	{% endfor %}
 </div>

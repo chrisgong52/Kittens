@@ -23,6 +23,14 @@ p1.hand.append("diffuse")
 p1.hand.append("tacocat")
 p1.hand.append("skip")
 
+p2 = Player()
+p2.hand.append("nope")
+p2.hand.append("shuffle")
+p2.hand.append("favor")
+p2.hand.append("rainbow-ralphing cat")
+p2.hand.append("beard cat")
+
+players = [p1, p2]
 images = {"diffuse": "static/Diffuse.png",
           "nope": "static/Nope.png",
           "attack": "static/Attack.png",

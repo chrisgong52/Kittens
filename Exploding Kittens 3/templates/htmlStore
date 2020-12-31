@@ -1,0 +1,4 @@
+<div class="grid-item"><img class="Diffuse_card" src="static/Diffuse.png" alt="test"></div>
+	 <div class="grid-item"><img class="Attack_card" src="static/Attack.png" alt="test"></div>
+	 <div class="grid-item"><img class="See_the_future_card" src="static/SeeTheFuture.png" alt="test"></div>  
+	 <div class="grid-item"><img class="Cattermelon" src="static/Cattermelon.png" alt="test"></div>

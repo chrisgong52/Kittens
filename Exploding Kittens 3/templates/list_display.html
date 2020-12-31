@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		/*.grid-container {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+			/* oversized min-width, but guarantees items don't have to go vertical 
+			min-width: 100vw;
+			position: fixed;
+			bottom: 0;
+			justify-items: center;
+		}*/
+		/*.grid-container {
+		  display: grid;
+		  grid-template-columns: 100vw;
+		  grid-template-rows: 100vh;
+		  align-items: center;
+		  justify-items: center;
+		}*/
+		.grid-container {
+			display: grid;
+			--card_size: 7%;
+			grid-template-columns: repeat({{len}}, 7%);/*var(--card_size));*/
+			min-width: 100%;
+			position: absolute;
+			bottom: 0;
+			/*justify-items: center;*/
+			/*margin-left: 40%;*/
+			margin-left: calc(50% - {{len}} * 7% / 2);/*var(--card_size) / 2);*/
+		}
+		
+		.grid-item>img{
+			width: 100%;
+			height: 100%;
+		}
+		
+		.grid-item {
+			text-align: center;
+			width: 100%;
+			height: 100%;
+		}
+		
+		
+		
+		
+		
+	</style>
+</head>
+
+<body>
+
+<div class="grid-container">
+	{% for item in player.hand %}
+	<div class="grid-item"><img  src={{ images[item] }} alt="test"></div>
+	{% endfor %}
+</div>
+
+
+</body>
+</html>

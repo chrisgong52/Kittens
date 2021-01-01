@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body{
+			--card_size: 10%;
+		}
+		
+		/*.grid-container {
+			display: grid;
+			grid-template-columns: repeat({{lens[0]}}, var(--card_size));
+			min-width: 100%;
+			position: absolute;
+			bottom: 0;
+			margin-left: calc(50% - {{lens[0]}} * var(--card_size) / 2);
+		}
+		
+		.grid-item>img{
+			width: 100%;
+			height: 100%;
+		}
+		
+		.grid-item {
+			text-align: center;
+			width: 100%;
+			height: 100%;
+		}*/
+		
+		.other-player {
+			display: grid;
+			grid-template-columns: repeat({{lens[1]}}, var(--card_size));
+			min-width: 100%;
+			position: fixed;
+			top: 0;
+			margin-left: calc(50% - {{lens[1]}} * var(--card_size) / 2);
+		}
+		
+		.opponent-item>img{
+			width: 100%;
+			height: 100%;
+			transform: rotate(180deg);
+		}
+		
+		.opponent-item {
+			text-align: center;
+			width: 100%;
+			height: 100%;
+		}
+/*
+<div class="other-player">
+	{% for item in players[1].hand %}
+	<div class="opponent-item"><img src={{ images["card_back"] }} alt"test"></div>
+	{% endfor %}
+</div>
+
+<div class="grid-container">
+	{% for item in players[0].hand %}
+	<div class="grid-item"><img  src={{ images[item] }} alt="test"></div>
+	{% endfor %}
+	
+	images[players[0].hand[{{ item }}]]
+</div>
+
+
+
+
+
+
+ "alt= width="100" height="200"
+		*/
+		
+		.grid-buttons {
+			display: grid;
+			grid-template-columns: repeat({{lens[0]}}, var(--card_size));
+			/*min-width: 100%;*/
+			position: absolute;
+			bottom: 0;
+			margin-left: calc(57% - {{lens[0]}} * var(--card_size) / 2);
+		}
+		
+		.grid-item>img{
+			width: 100%;
+			height: 100%;
+		}
+		
+		.grid-item {
+			text-align: center;
+			width: 100%;
+			height: 100%;
+		}
+		
+		
+		
+	</style>
+</head>
+
+<body>
+
+
+<div class="other-player">
+	{% for item in players[1].hand %}
+		<div class="opponent-item"><img src={{ images["card_back"] }} alt"test"></div>
+	{% endfor %}
+</div>
+<div class="grid-buttons">
+	{% for item in players[0].hand %}
+		<input type="image" src={{ images[item] }} style="width: 100%">
+	{% endfor %}
+</div>
+
+
+</body>
+</html>

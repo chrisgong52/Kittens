@@ -22,6 +22,7 @@ p1.hand.append("see the future")
 p1.hand.append("diffuse")
 p1.hand.append("tacocat")
 p1.hand.append("skip")
+p1.hand.append("exploding kitten")
 
 p2 = Player()
 p2.hand.append("nope")
@@ -33,6 +34,7 @@ p2.hand.append("beard cat")
 players = [p1, p2]
 hand_sizes = []
 for item in players:
+    print(len(item.hand))
     hand_sizes.append(len(item.hand))
 images = {"diffuse": "static/Diffuse.png",
           "nope": "static/Nope.png",
@@ -76,7 +78,7 @@ def about_page():
 
 @app.route("/list")
 def list_display():
-    return render_template('list_display.html', players = players, images = images, lens = hand_sizes)
+    return render_template('list_display2.html', players = players, images = images, lens = hand_sizes)
 
 if __name__ == "__main__":
     app.run(debug = True)
@@ -166,4 +168,13 @@ Test HTML code
 <input type="image" id="test" src="static/Diffuse.png" "alt= width="100" height="200">
 
     <! -- <img src=" {{ url_for('static', filename = "Diffuse.png", width=100, height = 200, mode='crop') }}" />
+    
+    
+    
+    
+    <! <input type="image" src={{ item }} style="width: 100%">
+    
+        <! <form action={{ players[0].change_state(item) }}>
+
+    <!</form>
 """

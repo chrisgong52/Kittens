@@ -4,6 +4,7 @@
 	<style>
 		body{
 			--card_size: 10%;
+			--card_num: 1;
 		}
 		
 		/*.grid-container {
@@ -72,10 +73,9 @@ players[0].hand
 		.grid-buttons {
 			display: grid;
 			grid-template-columns: repeat({{lens[0]}}, var(--card_size));
-			/*min-width: 100%;*/
 			position: absolute;
 			bottom: 0;
-			margin-left: calc(57% - {{lens[0]}} * var(--card_size) / 2);
+			padding-left: calc(57% - {{lens[0]}} * var(--card_size) / 2);
 		}
 		
 		.grid-item>img{
@@ -87,6 +87,10 @@ players[0].hand
 			text-align: center;
 			width: 100%;
 			height: 100%;
+		}
+		.grid-button {
+			grid-row-start: var(--card_num);
+			grid-row-end: calc( var(--card_num) + 1 );		
 		}
 		
 		
@@ -105,26 +109,16 @@ players[0].hand
 <div class="grid-buttons">
 	{% for item in range(0, lens[0]) %}
         <input type="image" src={{ images[players[0].hand[item]] }} style="width: 100%" />
+		<! <button class="grid-buttons" onclick="test_function();"> <! Try it</button>
 
-
-		<! <img id="card".concat(item) src={{ images[players[0].hand[item]] }} style="width: 100%" />  <! </img>
-		<! <script>
-		<! 	document.getElementById("card".concat(item)).addEventListener("click", {{ players[0].change_state(item) }});
-		< !</script>
-		
-		
-		<! <script>
-			<! window.getElementById({{ images[players[0].hand[item]] }}).addEventListener("click", {{ players[0].change_state(item) }});
-		<! </script>
 	{% endfor %}
-	<! <input type="text" class="form-control" id="name">
-	<button class="grid-buttons" onclick="test_function();" >Try it</button>
+	<!<button class="grid-buttons" onclick="test_function();" ><! Try it</button>
 	
-	<! <form action="/list" method="POST">
-	<! 	<div class="form-group">
-	<! 		<input class="form-control" type="img" src="static/Diffuse.png" name="diffuse">
-	<! 	</div>
-	<! </form>
+	{% for item in range(0, lens[0]) %}
+        <button class="grid-button" onclick="test_function();" id="abc">Try it</button>
+
+	{% endfor %}
+	
 		
 
 </div>
@@ -133,10 +127,25 @@ players[0].hand
 
 <script>
 
-	function test_function(){
-		//alert(this.id);
+	/*function test_function(){
 		var entry = {
-			name: "FJLSKD"
+			name: ddocument.getElementById("grid-button")
+		};
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}*/
+	
+diffuse_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
 		};
 		//console.log(entry);
 		fetch(`${window.origin}/list`, {
@@ -150,7 +159,390 @@ players[0].hand
 		})
 		
 	}
-
+nope_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+attack_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+favor_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+see_the_future_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+skip_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+shuffle_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+cattermelon_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+beard_cat_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+rainbow_ralphing_cat_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+tacocat_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+hairy_potato_cat_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_diffuse_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_nope_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_attack_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_favor_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_see_the_future_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_skip_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_shuffle_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_cattermelon_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_beard_cat_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_rainbow_ralphing_cat_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_tacocat_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_exploding_kitten_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+highlight_hairy_potato_cat_pressed(){
+		var entry = {
+			name: document.getElementById("grid-button")
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
 </script>
 
 

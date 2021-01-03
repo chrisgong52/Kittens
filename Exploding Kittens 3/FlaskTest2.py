@@ -64,6 +64,33 @@ images = {"diffuse": "static/Diffuse.png",
           "highlight hairy potato cat": "static/HighlightedHairyPotatoCat.png",
           "card_back": "static/CardBack.png"}
 
+button_functions = {"diffuse": "diffuse_pressed();",
+          "nope": "nope_pressed();",
+          "attack": "attack_pressed();",
+          "favor": "favor_pressed();",
+          "see the future": "see_the_future_pressed();",
+          "skip": "skip_pressed();",
+          "shuffle": "shuffle_pressed();",
+          "cattermelon": "cattermelon_pressed();",
+          "beard cat": "beard_cat_pressed();",
+          "rainbow-ralphing cat": "rainbow_ralphing_cat_pressed();",
+          "tacocat": "tacocat_pressed();",
+          "hairy potato cat": "hairy_potato_cat_pressed();",
+          "exploding kitten": "exploding_kitten_pressed();",
+          "highlight diffuse": "highlight_diffuse_pressed();",
+          "highlight nope": "highlight_nope_pressed();",
+          "highlight attack": "highlight_attack_pressed();",
+          "highlight favor": "highlight_favor_pressed();",
+          "highlight see the future": "highlight_see_the_future_pressed();",
+          "highlight skip": "highlight_skip_pressed();",
+          "highlight shuffle": "highlight_shuffle_pressed();",
+          "highlight cattermelon": "highlight_cattermelon_pressed();",
+          "highlight beard cat": "highlight_beard_cat_pressed();",
+          "highlight rainbow-ralphing cat": "highlight_rainbow_ralphing_cat_pressed();",
+          "highlight tacocat": "highlight_tacocat_pressed();",
+          "highlight exploding kitten": "highlight_exploding_kitten_pressed();",
+          "highlight hairy potato cat": "highlight_hairy_potato_cat_pressed();"}
+
 
 
 @app.route("/")
@@ -88,7 +115,7 @@ def list_display():
         ### jsonify TRANSLATES PYTHON STUFF TO JSON OBJECT
         
         return res
-    return render_template('list_display2.html', players = players, images = images, lens = hand_sizes)
+    return render_template('list_display2.html', players = players, images = images, lens = hand_sizes, button_functions = button_functions)
 
 #@app.route("/list/test", methods = ["GET", "POST"])
 #def create_button():

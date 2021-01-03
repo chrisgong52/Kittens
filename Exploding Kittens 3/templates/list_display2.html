@@ -63,7 +63,7 @@
 
 
 
-
+players[0].hand
 
 
  "alt= width="100" height="200"
@@ -103,10 +103,58 @@
 	{% endfor %}
 </div>
 <div class="grid-buttons">
-	{% for item in players[0].hand %}
-		<input type="image" src={{ images[item] }} style="width: 100%">
+	{% for item in range(0, lens[0]) %}
+        <input type="image" src={{ images[players[0].hand[item]] }} style="width: 100%" />
+
+
+		<! <img id="card".concat(item) src={{ images[players[0].hand[item]] }} style="width: 100%" />  <! </img>
+		<! <script>
+		<! 	document.getElementById("card".concat(item)).addEventListener("click", {{ players[0].change_state(item) }});
+		< !</script>
+		
+		
+		<! <script>
+			<! window.getElementById({{ images[players[0].hand[item]] }}).addEventListener("click", {{ players[0].change_state(item) }});
+		<! </script>
 	{% endfor %}
+	<! <input type="text" class="form-control" id="name">
+	<button class="grid-buttons" onclick="test_function();" >Try it</button>
+	
+	<! <form action="/list" method="POST">
+	<! 	<div class="form-group">
+	<! 		<input class="form-control" type="img" src="static/Diffuse.png" name="diffuse">
+	<! 	</div>
+	<! </form>
+		
+
 </div>
+
+{% block script %}
+
+<script>
+
+	function test_function(){
+		//alert(this.id);
+		var entry = {
+			name: "FJLSKD"
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+
+</script>
+
+
+{% endblock %}
 
 
 </body>

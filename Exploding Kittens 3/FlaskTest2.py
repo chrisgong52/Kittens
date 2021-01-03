@@ -4,7 +4,7 @@ Created on Dec 28, 2020
 @author: Maria
 '''
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, jsonify, make_response
 import tkinter
 from tkinter import *
 import webbrowser
@@ -76,9 +76,23 @@ def hello_world():
 def about_page():
     return render_template('page.html')
 
-@app.route("/list")
+@app.route("/list", methods = ["GET", "POST"])
 def list_display():
+    if request.method == "POST":
+        print("sdljkf")
+        req = request.get_json()
+        print("received")
+        print(req)
+        res = make_response(jsonify({"message": "JSON received"}), 200)
+        
+        ### jsonify TRANSLATES PYTHON STUFF TO JSON OBJECT
+        
+        return res
     return render_template('list_display2.html', players = players, images = images, lens = hand_sizes)
+
+#@app.route("/list/test", methods = ["GET", "POST"])
+#def create_button():
+    
 
 if __name__ == "__main__":
     app.run(debug = True)

@@ -101,9 +101,15 @@ players[0].hand
 <body>
 
 
-<div class="other-player">
-	{% for item in players[1].hand %}
-		<div class="opponent-item"><img src={{ images["card_back"] }} alt"test"></div>
+<! <div class="other-player">
+	<! {% for item in players[1].hand %}
+	<! 	<div class="opponent-item"> 	<!<img src={{ images["card_back"] }} alt"test"> 	<! </div>
+	<! {% endfor %}
+<! </div>
+
+<div class"other-player">
+	{% for item in players[0].hand %}
+		<p> {{ item }} </p>
 	{% endfor %}
 </div>
 <div class="grid-buttons">
@@ -114,7 +120,7 @@ players[0].hand
 	<!<button class="grid-buttons" onclick="test_function();" ><! Try it</button>
 	
 	{% for item in range(0, lens[0]) %}
-        <button class="grid-button" onclick={{ button_functions[players[0].hand[item]] }} id={{item}}>Try it</button>
+        <button class="grid-button" onclick={{ button_functions[players[0].hand[item]] }} id={{ item }}>Try it</button>
 
 	{% endfor %}
 	

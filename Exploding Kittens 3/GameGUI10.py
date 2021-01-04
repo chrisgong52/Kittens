@@ -232,85 +232,85 @@ def init_other_players(host_player: int, left_bound: int, root, canvas):
                 temp.append(CardDisplay("card_back", root, canvas, left_bound, 0, 180))
                 left_bound = left_bound + CARD_WIDTH/2
 
-
-milliseconds_start = int(round(time.time() * 1000))
-milliseconds = int(round(time.time() * 1000))
-
-
-
-init_cards(CARDS[0], CARDS[len(CARDS)-1], HORIZ_LINE, CARD_COUNT)
-
-
-
-'''
-frame = Frame(root)
-frame.pack()
-
-bottomframe = Frame(root)
-bottomframe.pack( side = BOTTOM )'''
-
-
-btn2 = Button(root, text = "Remove Card", command = lambda:on_click("remove", ""))
-btn3 = Button(root, text = "Exit", command = lambda:on_click("quit", ""))
-
-'''
-for item in CARD_BUTTONS.values():
-    button = item
-    button.configure(highlightbackground='red')
-    button.place(relx=0.75, rely=0.5, anchor='center')
-    #button.pack()'''
-
-
-btn2.pack()
-btn3.pack()
-canvas.pack()
-
-
-width = (int)((CARDS[-1] - CARDS[0])/(len(CARDS)-1))
-
-
-#while milliseconds < milliseconds_start + 15000:
-p1 = Player()
-p2 = Player()
-PLAYERS.append(p1)
-PLAYERS.append(p2)
-p1.draw(DECK)
-for player in PLAYERS:
-    ACTION_LIST.append([])
-p2_hand_size = 3
-while(p2_hand_size > 0):
-    p2.draw(DECK)
-    p2_hand_size = p2_hand_size - 1
-
-for item in CARD_BUTTONS.keys():
-    button = CARD_BUTTONS[item]
-    #button.configure(highlightbackground='red')
-    if item == "draw":
+if __name__ == "__main__":
+    milliseconds_start = int(round(time.time() * 1000))
+    milliseconds = int(round(time.time() * 1000))
+    
+    
+    
+    init_cards(CARDS[0], CARDS[len(CARDS)-1], HORIZ_LINE, CARD_COUNT)
+    
+    
+    
+    '''
+    frame = Frame(root)
+    frame.pack()
+    
+    bottomframe = Frame(root)
+    bottomframe.pack( side = BOTTOM )'''
+    
+    
+    btn2 = Button(root, text = "Remove Card", command = lambda:on_click("remove", ""))
+    btn3 = Button(root, text = "Exit", command = lambda:on_click("quit", ""))
+    
+    '''
+    for item in CARD_BUTTONS.values():
+        button = item
+        button.configure(highlightbackground='red')
         button.place(relx=0.75, rely=0.5, anchor='center')
-    else:
-        button.place(relx=0.25, rely=0.5, anchor='center')
-        
-
-while not EXIT:
+        #button.pack()'''
+    
+    
+    btn2.pack()
+    btn3.pack()
+    canvas.pack()
+    
+    
     width = (int)((CARDS[-1] - CARDS[0])/(len(CARDS)-1))
-    disp = []
-    left_bound = canvas.winfo_reqwidth()/2 - (CARD_WIDTH/2 + 15*len(PLAYERS[0].hand)-1)
-    temp_left = left_bound
-    top_bound = HORIZ_LINE
-    for card in PLAYERS[CURRENT_PLAYER[0]].hand:
-        disp.append(CardDisplay(card, root, canvas, temp_left, top_bound, 0))
-        temp_left = temp_left + CARD_WIDTH/2
-    #init_other_players(CURRENT_PLAYER[0], left_bound, root, canvas)
     
     
-    for item in range(len(PLAYERS)):
-        if item != CURRENT_PLAYER[0]:
-            temp = []
-            other_left = canvas.winfo_reqwidth()/2 - (CARD_WIDTH/2 + 15*len(PLAYERS[item].hand)-1)
-            for card in PLAYERS[item].hand:
-                temp.append(CardDisplay("card_back", root, canvas, other_left, 0, 180))
-                other_left = other_left + CARD_WIDTH/2
-    #print(canvas.winfo_reqwidth())
-    canvas.update()
-count = 0
+    #while milliseconds < milliseconds_start + 15000:
+    p1 = Player()
+    p2 = Player()
+    PLAYERS.append(p1)
+    PLAYERS.append(p2)
+    p1.draw(DECK)
+    for player in PLAYERS:
+        ACTION_LIST.append([])
+    p2_hand_size = 3
+    while(p2_hand_size > 0):
+        p2.draw(DECK)
+        p2_hand_size = p2_hand_size - 1
+    
+    for item in CARD_BUTTONS.keys():
+        button = CARD_BUTTONS[item]
+        #button.configure(highlightbackground='red')
+        if item == "draw":
+            button.place(relx=0.75, rely=0.5, anchor='center')
+        else:
+            button.place(relx=0.25, rely=0.5, anchor='center')
+            
+    
+    while not EXIT:
+        width = (int)((CARDS[-1] - CARDS[0])/(len(CARDS)-1))
+        disp = []
+        left_bound = canvas.winfo_reqwidth()/2 - (CARD_WIDTH/2 + 15*len(PLAYERS[0].hand)-1)
+        temp_left = left_bound
+        top_bound = HORIZ_LINE
+        for card in PLAYERS[CURRENT_PLAYER[0]].hand:
+            disp.append(CardDisplay(card, root, canvas, temp_left, top_bound, 0))
+            temp_left = temp_left + CARD_WIDTH/2
+        #init_other_players(CURRENT_PLAYER[0], left_bound, root, canvas)
+        
+        
+        for item in range(len(PLAYERS)):
+            if item != CURRENT_PLAYER[0]:
+                temp = []
+                other_left = canvas.winfo_reqwidth()/2 - (CARD_WIDTH/2 + 15*len(PLAYERS[item].hand)-1)
+                for card in PLAYERS[item].hand:
+                    temp.append(CardDisplay("card_back", root, canvas, other_left, 0, 180))
+                    other_left = other_left + CARD_WIDTH/2
+        #print(canvas.winfo_reqwidth())
+        canvas.update()
+    count = 0
     

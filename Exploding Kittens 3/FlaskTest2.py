@@ -9,6 +9,10 @@ import tkinter
 from tkinter import *
 import webbrowser
 from Player2 import Player
+import string
+import StateTests
+from Deck import Deck
+
 
 app = Flask(__name__)
 
@@ -92,6 +96,73 @@ button_functions = {"diffuse": "diffuse_pressed(this.id);",
           "highlight hairy potato cat": "highlight_hairy_potato_cat_pressed(this.id);"}
 
 
+def on_click(action: string, name: string):
+    global CARD_COUNT
+    global PLAYERS
+    global DISCARD
+    global ACTION_LIST
+    global ACTION_CARDS
+    global DECK
+    global CURRENT_PLAYER
+    for item in range(len(PLAYERS)):
+            print("Player " + str(item+1) + " hand: ", end = "")
+            PLAYERS[item].print()
+    if action == "add":
+        CARD_COUNT = CARD_COUNT + 1
+        
+        ### for dynamic make current player
+        PLAYERS[0].hand.append(name)
+        
+    if action == "push":
+        '''
+        CHANGE THIS FOR FORMATTING FOR THE CARDS TO CORRECT DISCARD FORMAT LIKE IN TEST
+        '''
+        
+        
+        if len(name) != 0 and StateTests.check_valid(name, ACTION_CARDS, PLAYERS, CURRENT_PLAYER) != "invalid":
+            action_list = []
+            for item in range(len(PLAYERS[CURRENT_PLAYER[0]].hand)):
+                if PLAYERS[CURRENT_PLAYER[0]].is_selected(item):
+                    action_list.append(item)
+            if len(action_list) > 1:
+                action_list = [action_list]
+            inds = []
+            
+
+            if len(name) != 0 and StateTests.check_valid(name, ACTION_CARDS, PLAYERS, CURRENT_PLAYER) != "invalid":
+                if len(name) == 2 or (len(name) == 1 and name[0] == "favor"):
+                    inds.append(input("input player to take card from: "))
+                    inds.append(input("input index of card to take: "))
+                elif len(name) == 3:
+                    inds.append(input("input player to take card from: "))
+                    inds.append(input("input name of card to take: "))
+                elif len(name) == 5:
+                    inds.append(input("name of card to take: "))
+                elif len(name) == 1 and name[0] == "see the future":
+                    input("press enter when done")
+                    inds.append("enter")
+                    
+            ###
+            ###    MAKE ACTION LIST LIST FOR EACH PLAYER, ADD CURRENT ACTION LIST TO THAT ONE
+            ###    GLOBAL WILL BE PASSED IN TO HAVE SOMETHING FOR EACH PLAYER
+            ###
+            ACTION_LIST[CURRENT_PLAYER[0]] = action_list
+            PLAYERS[CURRENT_PLAYER[0]].deselect_all()
+            StateTests.play_card(DECK, DISCARD, PLAYERS, CURRENT_PLAYER, ACTION_LIST, inds)
+            print("CARD PLAYED")
+            PLAYERS[CURRENT_PLAYER[0]].print()
+            print()
+        else:
+            PLAYERS[CURRENT_PLAYER[0]].deselect_all()
+        
+        
+    if action == "remove":
+        CARD_COUNT = CARD_COUNT - 1
+        
+        ### make selectable
+        PLAYERS[0].hand.pop(-1)
+
+
 
 @app.route("/")
 @app.route("/home")
@@ -103,18 +174,30 @@ def hello_world():
 def about_page():
     return render_template('page.html')
 
+@app.route("/")
 @app.route("/list", methods = ["GET", "POST"])
 def list_display():
     if request.method == "POST":
-        print("sdljkf")
         req = request.get_json()
         print("received")
         print(req)
+        players[0].change_state(int(req['val']))
+        players[0].print()
+        #players[0].hand.append("diffuse")
+        print()
+        for item in players:
+            item.print()
+        print()
         res = make_response(jsonify({"message": "JSON received"}), 200)
+        # res = make_response(jsonify({"players": players[0].hand}), 200)
         
         ### jsonify TRANSLATES PYTHON STUFF TO JSON OBJECT
-        
+
         return res
+        
+        ### RENDER TEMPLATE UPDATES PAGE WHEN REFRESHED
+        # return render_template('list_display2.html', players = players, images = images, lens = hand_sizes, button_functions = button_functions)
+    
     return render_template('list_display2.html', players = players, images = images, lens = hand_sizes, button_functions = button_functions)
 
 #@app.route("/list/test", methods = ["GET", "POST"])

@@ -109,13 +109,12 @@ players[0].hand
 <div class="grid-buttons">
 	{% for item in range(0, lens[0]) %}
         <input type="image" src={{ images[players[0].hand[item]] }} style="width: 100%" />
-		<! <button class="grid-buttons" onclick="test_function();"> <! Try it</button>
 
 	{% endfor %}
 	<!<button class="grid-buttons" onclick="test_function();" ><! Try it</button>
 	
 	{% for item in range(0, lens[0]) %}
-        <button class="grid-button" onclick="test_function();" id="abc">Try it</button>
+        <button class="grid-button" onclick={{ button_functions[players[0].hand[item]] }} id={{item}}>Try it</button>
 
 	{% endfor %}
 	
@@ -126,11 +125,13 @@ players[0].hand
 {% block script %}
 
 <script>
-
-	/*function test_function(){
+	
+	function diffuse_pressed(clicked_id){
 		var entry = {
-			name: ddocument.getElementById("grid-button")
+			name: "diffuse",
+			val: clicked_id
 		};
+		//console.log(entry);
 		fetch(`${window.origin}/list`, {
 			method: "POST",
 			credentials: "include",
@@ -141,11 +142,28 @@ players[0].hand
 			})
 		})
 		
-	}*/
-	
-	diffuse_pressed(){
+	}
+	function nope_pressed(clicked_id){
+		var entry = {
+			name: "nope",
+			val: clicked_id
+		};
+		//console.log(entry);
+		fetch(`${window.origin}/list`, {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(entry),
+			cache: "no-cache",
+			headers: new Headers({
+				"content-type": "application/json"
+			})
+		})
+		
+	}
+	function attack_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "attack",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -159,9 +177,10 @@ players[0].hand
 			})
 			
 		}
-	nope_pressed(){
+	function favor_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "favor",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -175,9 +194,10 @@ players[0].hand
 			})
 			
 		}
-	attack_pressed(){
+	function see_the_future_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "see_the_future",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -191,9 +211,10 @@ players[0].hand
 			})
 			
 		}
-	favor_pressed(){
+	function skip_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "skip",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -207,9 +228,10 @@ players[0].hand
 			})
 			
 		}
-	see_the_future_pressed(){
+	function shuffle_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "shuffle",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -223,9 +245,10 @@ players[0].hand
 			})
 			
 		}
-	skip_pressed(){
+	function cattermelon_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "cattermelon",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -239,9 +262,10 @@ players[0].hand
 			})
 			
 		}
-	shuffle_pressed(){
+	function beard_cat_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "beardcat",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -255,9 +279,10 @@ players[0].hand
 			})
 			
 		}
-	cattermelon_pressed(){
+	function rainbow_ralphing_cat_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "rainbow-ralphing cat",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -271,9 +296,10 @@ players[0].hand
 			})
 			
 		}
-	beard_cat_pressed(){
+	function tacocat_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "tacocat",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -287,9 +313,10 @@ players[0].hand
 			})
 			
 		}
-	rainbow_ralphing_cat_pressed(){
+	function hairy_potato_cat_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "hairy potato cat",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -303,9 +330,10 @@ players[0].hand
 			})
 			
 		}
-	tacocat_pressed(){
+	function exploding_kitten_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "exploding kitten",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -319,9 +347,10 @@ players[0].hand
 			})
 			
 		}
-	hairy_potato_cat_pressed(){
+	function highlight_diffuse_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight diffuse",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -335,9 +364,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_diffuse_pressed(){
+	function highlight_nope_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight nope",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -351,9 +381,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_nope_pressed(){
+	function highlight_attack_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight attack",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -367,9 +398,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_attack_pressed(){
+	function highlight_favor_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight favor",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -383,9 +415,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_favor_pressed(){
+	function highlight_see_the_future_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight see the future",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -399,9 +432,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_see_the_future_pressed(){
+	function highlight_skip_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight skip",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -415,9 +449,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_skip_pressed(){
+	function highlight_shuffle_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight shuffle",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -431,9 +466,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_shuffle_pressed(){
+	function highlight_cattermelon_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight cattermelon",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -447,9 +483,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_cattermelon_pressed(){
+	function highlight_beard_cat_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight beard cat",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -463,9 +500,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_beard_cat_pressed(){
+	function highlight_rainbow_ralphing_cat_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight rainbow-ralphing cat",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -479,9 +517,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_rainbow_ralphing_cat_pressed(){
+	function highlight_tacocat_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight tacocat",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -495,9 +534,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_tacocat_pressed(){
+	function highlight_exploding_kitten_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight exploding kitten",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
@@ -511,25 +551,10 @@ players[0].hand
 			})
 			
 		}
-	highlight_exploding_kitten_pressed(){
+	function highlight_hairy_potato_cat_pressed(clicked_id){
 			var entry = {
-				name: document.getElementById("grid-button")
-			};
-			//console.log(entry);
-			fetch(`${window.origin}/list`, {
-				method: "POST",
-				credentials: "include",
-				body: JSON.stringify(entry),
-				cache: "no-cache",
-				headers: new Headers({
-					"content-type": "application/json"
-				})
-			})
-			
-		}
-	highlight_hairy_potato_cat_pressed(){
-			var entry = {
-				name: document.getElementById("grid-button")
+				name: "highlight hairy potato cat",
+				val: clicked_id
 			};
 			//console.log(entry);
 			fetch(`${window.origin}/list`, {
